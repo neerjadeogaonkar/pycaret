@@ -2,6 +2,7 @@
 # Author: Moez Ali <moez.ali@queensu.ca>
 # License: MIT
 
+import numpy as np
 def version():
     print("1.0.0")
 
@@ -93,6 +94,12 @@ def check_metric(actual, prediction, metric, round=4):
     
     return result
 
+def _get_mask(X, value_to_mask):
+    """Compute the boolean mask X == missing_values."""
+    if value_to_mask == "NaN" or np.isnan(value_to_mask):
+        return np.isnan(X)
+    else:
+        return X == value_to_mask
 
 def enable_colab():
     
